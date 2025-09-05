@@ -1,8 +1,7 @@
-package study.hello.mission1.repository;
+package study.hello.repository;
 
-import study.hello.mission1.domain.Member;
+import study.hello.domain.Member;
 
-import javax.sound.midi.Sequence;
 import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository{

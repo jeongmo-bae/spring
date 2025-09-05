@@ -1,13 +1,12 @@
-package study.hello.mission1.repository;
+package study.hello.repository;
 
 //import org.junit.jupiter.api.Assertions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import study.hello.mission1.domain.Member;
+import study.hello.domain.Member;
 
 import java.util.List;
-import java.util.Optional;
 
 class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();

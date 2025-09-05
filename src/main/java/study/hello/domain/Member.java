@@ -1,4 +1,4 @@
-package study.hello.mission1.domain;
+package study.hello.domain;
 
 public class Member {
     private Long id;

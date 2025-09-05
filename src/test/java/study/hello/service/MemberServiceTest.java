@@ -1,12 +1,12 @@
-package study.hello.mission1.service;
+package study.hello.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import study.hello.mission1.domain.Member;
+import study.hello.domain.Member;
 
 import org.assertj.core.api.Assertions;
-import study.hello.mission1.repository.MemoryMemberRepository;
+import study.hello.repository.MemoryMemberRepository;
 
 import static org.assertj.core.api.Fail.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;

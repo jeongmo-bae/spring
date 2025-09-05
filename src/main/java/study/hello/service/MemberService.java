@@ -1,11 +1,9 @@
-package study.hello.mission1.service;
+package study.hello.service;
 
-import study.hello.mission1.domain.Member;
-import study.hello.mission1.repository.MemberRepository;
-import study.hello.mission1.repository.MemoryMemberRepository;
+import study.hello.domain.Member;
+import study.hello.repository.MemberRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public class MemberService {
     private final MemberRepository memberRepository;
