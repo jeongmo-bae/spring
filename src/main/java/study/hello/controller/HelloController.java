@@ -16,12 +16,14 @@ public class HelloController {
         model.addAttribute("data","spring!!!");
         return "hello";
     }
+    
     // MVC
     @GetMapping("hello-mvc")
     public String helloMvc(@RequestParam(value = "name",required = false) String name, Model model) {
         model.addAttribute("name", name);
         return "hello-template";
     }
+
     // API
     @GetMapping("hello-string")
     @ResponseBody // http 통신 프로토콜 body 부에 데이터를 직접 넣어주겠단 의미
