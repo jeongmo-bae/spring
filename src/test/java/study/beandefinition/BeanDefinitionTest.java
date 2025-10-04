@@ -1,4 +1,4 @@
-package study.mission3.beandefinition;
+package study.beandefinition;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

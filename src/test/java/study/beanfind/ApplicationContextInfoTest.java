@@ -1,4 +1,4 @@
-package study.mission3.beanfind;
+package study.beanfind;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
