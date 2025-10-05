@@ -22,4 +22,8 @@ public class OrderServiceImpl implements OrderService {
         return new Order(memberId,itemName,itemPrice,discountPrice);
     }
 
+    // 스프링 컨테이너의 싱글톤 빈 보장 확인용
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
