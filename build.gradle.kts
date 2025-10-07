@@ -30,6 +30,8 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+    // Provider 의존성 추가
+    implementation("jakarta.inject:jakarta.inject-api")
     //lombok 라이브러리 추가 시작
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
