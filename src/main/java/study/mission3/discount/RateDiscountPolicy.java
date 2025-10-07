@@ -1,10 +1,16 @@
 package study.mission3.discount;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import study.mission3.annotation.MainDiscountPolicy;
 import study.mission3.member.Grade;
 import study.mission3.member.Member;
 
 @Component
+//@Qualifier("mainDiscountPolicy")
+//@MainDiscountPolicy
+@Primary
 public class RateDiscountPolicy implements DiscountPolicy{
     private final double discountRate = 0.1;
     @Override
