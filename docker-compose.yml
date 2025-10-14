@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: project-spring
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project_board
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    command: >
+      --default-authentication-plugin=caching_sha2_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_0900_ai_ci
+      --lower_case_table_names=1
+      --explicit_defaults_for_timestamp=ON
+      --log-bin-trust-function-creators=1
+      --skip-name-resolve
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot" ]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped

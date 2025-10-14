@@ -27,17 +27,30 @@ repositories {
 }
 
 dependencies {
-
-	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-    // Provider 의존성 추가
-    implementation("jakarta.inject:jakarta.inject-api")
-    //lombok 라이브러리 추가 시작
+    // Web & SSR(Thymeleaf)
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    //dev-tools
+    implementation("org.springframework.boot:spring-boot-devtools")
+    //lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
-    //lombok 라이브러리 추가 끝
+
+    // Validation (요청 파라미터 검증용)
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    // Persistence: JDBC
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
+    // DB 드라이버
+    implementation("com.mysql:mysql-connector-j")
+
+    // Provider 의존성 추가
+    implementation("jakarta.inject:jakarta.inject-api")
+
+    //test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

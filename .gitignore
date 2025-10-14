@@ -53,3 +53,6 @@ target/
 
 ### Other ###
 *.class
+
+### mysql ###
+mysql_data/
