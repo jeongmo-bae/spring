@@ -10,7 +10,7 @@
 <form id="searchForm">
     <input type="text" id="keyword" placeholder="제목 검색" />
     <button type="submit">검색</button>
-    <a href="post-form.html">글쓰기</a>
+    <a href="post-form">글쓰기</a>
 </form>
 
 <table border="1" width="100%" id="listTable">
@@ -43,7 +43,7 @@
           <td>${p.author}</td>
           <td>${p.createdAt ?? ''}</td>
           <td>
-            <a href="post-form.html?id=${p.id}">수정</a>
+            <a href="post-form?id=${p.id}">수정</a>
             <button onclick="del(${p.id})">삭제</button>
           </td>`;
             tbody.appendChild(tr);

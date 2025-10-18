@@ -8,4 +8,3 @@ CREATE TABLE IF NOT EXISTS posts (
     INDEX idx_posts_author (author)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
