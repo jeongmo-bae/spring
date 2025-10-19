@@ -1,0 +1,48 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Posts</title>
+    <!-- SSR(Thymeleaf) 템플릿. 서버에서 모델 데이터를 주입해서 HTML을 그린다. -->
+</head>
+<body>
+<h1>게시판</h1>
+
+<!-- 검색 폼: GET /posts?id=...  -->
+<form th:action="@{/posts}" method="get">
+    <input type="number" name="id" th:value="${id}" placeholder="ID 검색"/>
+    <button type="submit">검색</button>
+    <a th:href="@{/posts/new}">글쓰기</a>
+</form>
+
+<!-- 총 개수 표시 -->
+<p th:text="'총 ' + ${total} + '건'"></p>
+
+<!-- 전체 목록 테이블 -->
+<table border="1" width="100%">
+    <thead>
+    <tr><th>ID</th><th>제목</th><th>작성자</th><th>작성일</th><th>액션</th></tr>
+    </thead>
+    <tbody>
+    <!-- posts: List<Post> 전체 전달 -->
+    <tr th:each="p : ${posts}">
+        <td th:text="${p.id}"></td>
+        <td><a th:href="@{|/posts/${p.id}|}" th:text="${p.title}"></a></td>
+        <td th:text="${p.author}"></td>
+        <!-- 포맷 원하면: ${#temporals.format(p.createdAt, 'yyyy-MM-dd HH:mm')} -->
+        <td th:text="${p.createdAt}"></td>
+        <td>
+            <a th:href="@{|/posts/${p.id}/edit|}">수정</a>
+            <form th:action="@{|/posts/${p.id}/delete|}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('삭제할까요?')">삭제</button>
+            </form>
+        </td>
+    </tr>
+
+    <!-- 데이터 없을 때 -->
+    <tr th:if="${#lists.isEmpty(posts)}"><td colspan="5">데이터 없음</td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>

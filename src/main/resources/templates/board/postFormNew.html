@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>글 작성</title>
+</head>
+<body>
+<a th:href="@{/posts}">← 목록</a>
+<h1>글 작성</h1>
+
+<!-- PostForm 을 바인딩 -->
+<form th:action="@{/posts}" method="post" th:object="${form}">
+    <div>
+        <label>제목</label><br/>
+        <input type="text" th:field="*{title}" maxlength="200" style="width:400px;"/>
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    </div>
+
+    <div>
+        <label>작성자</label><br/>
+        <input type="text" th:field="*{author}" maxlength="50" style="width:200px;"/>
+        <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+    </div>
+
+    <div>
+        <label>내용</label><br/>
+        <textarea th:field="*{content}" rows="12" cols="80"></textarea>
+        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+    </div>
+
+<!--    &lt;!&ndash; CSRF 토큰 (Spring Security 사용 중이라면 필수) &ndash;&gt;-->
+<!--    <input type="hidden" th:if="${_csrf != null}"-->
+<!--           th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+    <button type="submit">저장</button>
+</form>
+</body>
+</html>

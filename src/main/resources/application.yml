@@ -3,7 +3,7 @@ spring:
     name: spring
 
   datasource:
-    url: jdbc:mysql://localhost:$3306/boarddb
+    url: jdbc:mysql://localhost:3306/project_board
       ?useSSL=false
       &serverTimezone=Asia/Seoul
       &useUnicode=true
