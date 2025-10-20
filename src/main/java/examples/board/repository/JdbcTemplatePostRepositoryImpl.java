@@ -49,7 +49,6 @@ public class JdbcTemplatePostRepositoryImpl implements PostRepository{
         }, keyHolder);
         Long id = Objects.requireNonNull(keyHolder.getKey()).longValue();
         post.setId(id);
-        System.out.println("save post : " + post.getId());
     }
 
     @Override

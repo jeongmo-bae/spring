@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -28,7 +29,6 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public void update(Post post,PostForm form) {
-        postRepository.findById(post.getId()).orElseThrow(() -> new IllegalArgumentException("post not found"));
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
         post.setAuthor(form.getAuthor());
@@ -37,7 +37,6 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public void delete(Long id) {
-        postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("post not found"));
         postRepository.delete(id);
     }
 
@@ -47,8 +46,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post get(Long id) {
-        return postRepository.findById(id).orElse(null);
+    public Optional<Post> get(Long id) {
+        return postRepository.findById(id);
     }
 
     @Override

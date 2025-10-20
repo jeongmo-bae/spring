@@ -10,7 +10,7 @@
 
 <!-- 검색 폼: GET /posts?id=...  -->
 <form th:action="@{/posts}" method="get">
-    <input type="number" name="id" th:value="${id}" placeholder="ID 검색"/>
+    <input type="number" name="id" th:value="${id}" placeholder="ID 검색" min="1" step="1"/>
     <button type="submit">검색</button>
     <a th:href="@{/posts/new}">글쓰기</a>
 </form>
