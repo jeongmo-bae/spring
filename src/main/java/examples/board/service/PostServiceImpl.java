@@ -6,11 +6,13 @@ import examples.board.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class PostServiceImpl implements PostService{
     private final PostRepository postRepository;
 
@@ -41,19 +43,20 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Post> findAll() {
         return postRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Post> get(Long id) {
         return postRepository.findById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public long count() {
         return postRepository.count();
     }
-
-
 }

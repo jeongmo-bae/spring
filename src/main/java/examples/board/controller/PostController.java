@@ -30,7 +30,7 @@ public class PostController {
                     .get(id)
                     .map(List::of)
                     .orElse(new ArrayList<>());
-            long total = posts.size(); ;
+            long total = posts.size();
             model.addAttribute("posts", posts);
             model.addAttribute("total", total);
         }else {
