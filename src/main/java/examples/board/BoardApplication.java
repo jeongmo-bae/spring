@@ -11,6 +11,8 @@ public class BoardApplication {
 
     private static final Logger log = LoggerFactory.getLogger(BoardApplication.class);
     public static void main(String[] args) {
-        SpringApplication.run(BoardApplication.class, args);
+        SpringApplication app = new SpringApplication(BoardApplication.class);
+        app.setAdditionalProfiles("board");
+        app.run(args);
     }
 }
