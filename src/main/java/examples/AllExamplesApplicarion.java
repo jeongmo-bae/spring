@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AllExamplesApplicarion {
     public static void main(String[] args) {
-        SpringApplication.run(AllExamplesApplicarion.class, args);
+        SpringApplication app = new SpringApplication(AllExamplesApplicarion.class);
+        app.setAdditionalProfiles("board");
+        app.run(args);
+
     }
 }
