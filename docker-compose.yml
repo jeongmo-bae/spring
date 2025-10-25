@@ -6,7 +6,7 @@ services:
     container_name: project-spring
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: project_board
+#      MYSQL_DATABASE: project_board
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
       TZ: Asia/Seoul
