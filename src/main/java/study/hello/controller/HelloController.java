@@ -28,7 +28,7 @@ public class HelloController {
     @GetMapping("hello-string")
     @ResponseBody // http 통신 프로토콜 body 부에 데이터를 직접 넣어주겠단 의미
     public String helloString(@RequestParam(value = "name", required = true) String name){
-        return "hello" + name;
+        return "study/hello" + name;
     }
 
     @GetMapping("hello-api")

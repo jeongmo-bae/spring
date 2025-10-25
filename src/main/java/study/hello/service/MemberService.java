@@ -1,7 +1,5 @@
 package study.hello.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import study.hello.domain.Member;
 import study.hello.repository.MemberRepository;
 
