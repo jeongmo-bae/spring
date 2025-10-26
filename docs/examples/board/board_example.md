@@ -89,7 +89,7 @@ src
         │        └─ form.html
         │
         ├─ application.yml
-        └─ schema.sql
+        └─ init.sql
 ```
 
 ---
@@ -620,7 +620,7 @@ logging:
     org.springframework.jdbc.core: debug
 ```
 
-### `src/main/resources/schema.sql`
+### `src/main/resources/init.sql`
 ```sql
 CREATE TABLE IF NOT EXISTS posts (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
