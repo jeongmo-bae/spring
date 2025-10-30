@@ -26,4 +26,8 @@ server:
 
 logging:
   level:
-    org.springframework.jdbc.core: debug
+    #    root: DEBUG
+    study.db.jdbc: debug
+    #    org.springframework.jdbc.core: debug
+    com.zaxxer.hikari: debug
+
