@@ -7,6 +7,6 @@ import java.util.Optional;
 public interface MemberRepository {
     Member save(Member member);
     Optional<Member> findById(String memberId);
-    void update(Member member);
+    void update(String memberId, int money);
     void delete(String memberId);
 }

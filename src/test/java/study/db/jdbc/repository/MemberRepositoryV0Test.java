@@ -101,7 +101,7 @@ class MemberRepositoryV0Test {
 
         // when
         member.setMoney(999999);
-        memberRepositoryV0.update(member);
+        memberRepositoryV0.update(member.getMemberId(), member.getMoney());
         Member findMember = memberRepositoryV0.findById(member.getMemberId())
                 .orElseThrow(() -> new NoSuchElementException("not found"));
 

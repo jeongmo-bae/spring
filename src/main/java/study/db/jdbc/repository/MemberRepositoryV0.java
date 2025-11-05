@@ -65,15 +65,15 @@ public class MemberRepositoryV0 implements MemberRepository{
     }
 
     @Override
-    public void update(Member member) {
+    public void update(String id, int money) {
         String sql = "update project_spring_db_study.member set money = ? where member_id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,member.getMoney());
-            pstmt.setString(2,member.getMemberId());
+            pstmt.setInt(1,money);
+            pstmt.setString(2,id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             log.error("update error",e);

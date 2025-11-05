@@ -50,7 +50,7 @@ class MemberRepositoryV1Test {
         // update
         if (findMember != null) {
             findMember.setMoney(7777);
-            repository.update(findMember);
+            repository.update(findMember.getMemberId(), findMember.getMoney());
         }
 
         // delete
