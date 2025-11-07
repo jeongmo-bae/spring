@@ -2,11 +2,7 @@ package study.db.jdbc.service;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.*;
 import study.db.jdbc.domain.Member;
 import study.db.jdbc.repository.MemberRepository;
 import study.db.jdbc.repository.MemberRepositoryV1;
@@ -17,18 +13,24 @@ import java.sql.SQLException;
 
 import static study.db.jdbc.connection.ConnectionConst.*;
 
-@SpringBootTest
+//@SpringBootTest
 class MemberServiceV1Test {
     public static final String MEMBER_A = "memberA";
     public static final String MEMBER_B = "memberB";
     public static final String MEMBER_EX = "ex";
 
     private MemberServiceV1 memberServiceV1;
-    private MemberRepository memberRepository;
+    private MemberRepositoryV1 memberRepository;
+    private static DataSource dataSource;
+
+    @BeforeAll
+    static void beforeAll() {
+        dataSource = getDataSource();  // 한 번만 생성
+        System.out.println("dataSource 정의 완료. 커넥션풀 생성 대기");
+    }
 
     @BeforeEach
     void beforeEach() {
-        DataSource dataSource = getDataSource();
         memberRepository = new MemberRepositoryV1(dataSource);
         memberServiceV1 = new MemberServiceV1(memberRepository);
     }
@@ -53,30 +55,36 @@ class MemberServiceV1Test {
         // then
         Member foundMemberA = memberRepository.findById(MEMBER_A).orElseThrow(() -> new IllegalStateException(MEMBER_A +" is not exists"));
         Member foundMemberB = memberRepository.findById(MEMBER_B).orElseThrow(() -> new IllegalStateException(MEMBER_B +" is not exists"));
-
         Assertions.assertThat(foundMemberA.getMoney()).isEqualTo(memberA.getMoney() - 2000);
-
         Assertions.assertThat(foundMemberB.getMoney()).isEqualTo(memberA.getMoney() + 2000);
     }
     @Test
-    @DisplayName("이체 실패 테스트")
+    @DisplayName("이체중 실패 케이스 테스트")
     void failAccountTransfer() throws SQLException {
         // given
         Member memberA = new Member(MEMBER_A,10000);
-        Member memberB = new Member(MEMBER_B,10000);
-        Member memberEx = new Member(MEMBER_EX,9999);
+        Member memberEx = new Member(MEMBER_EX,10000);
         memberRepository.save(memberA);
-        memberRepository.save(memberB);
         memberRepository.save(memberEx);
-
-
         // when
+        try {
+            memberServiceV1.accountTransfer(MEMBER_A, MEMBER_EX, 2000);
+        }catch (IllegalStateException e){
+            // then
+            System.out.println("e = " + e);
+            Member foundMemberA = memberRepository.findById(MEMBER_A).orElseThrow(() -> new IllegalStateException(MEMBER_A +" is not exists"));
+            Member foundMemberEx = memberRepository.findById(MEMBER_EX).orElseThrow(() -> new IllegalStateException(MEMBER_EX +" is not exists"));
 
-        // then
+            System.out.println("foundMember.getMoney() = " + foundMemberA.getMoney());
+            System.out.println("foundMemberEx.getMoney() = " + foundMemberEx.getMoney());
+
+            Assertions.assertThat(foundMemberA.getMoney()).isEqualTo(memberA.getMoney() - 2000);
+            Assertions.assertThat(foundMemberEx.getMoney()).isEqualTo(memberEx.getMoney());
+        }
     }
 
 
-    private DataSource getDataSource(){
+    private static DataSource getDataSource(){
         HikariDataSource hikariDataSource = new HikariDataSource();
         hikariDataSource.setJdbcUrl(URL);
         hikariDataSource.setUsername(USER);
