@@ -9,8 +9,8 @@ spring:
       &useUnicode=true
       &characterEncoding=utf8
       &allowPublicKeyRetrieval=true
-    username: admin
-    password: admin
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jdbc:

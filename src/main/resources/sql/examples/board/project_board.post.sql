@@ -1,4 +1,8 @@
-CREATE TABLE IF NOT EXISTS posts (
+show databases ;
+
+create database project_board;
+
+CREATE TABLE IF NOT EXISTS project_board.posts (
                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                      title VARCHAR(200) NOT NULL,
                                      content TEXT NOT NULL,
