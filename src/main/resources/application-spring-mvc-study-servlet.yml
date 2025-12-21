@@ -34,4 +34,5 @@ server:
 logging:
   level:
 #    org.springframework.jdbc.core: debug
-    org.apache.coyote.http11: trace
+    org.apache.coyote.http11: trace # coyote.http11 = HTTP 파싱/프로세서/버퍼
+    org.apache.tomcat.util.net: debug # NIO endpoint/socket
